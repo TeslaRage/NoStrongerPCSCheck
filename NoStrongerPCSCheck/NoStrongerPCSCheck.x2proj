@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Default" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Guid>e7f4b7b7-576a-4908-a31d-562895e2b1ca</Guid>
+    <Name>NoStrongerPCSCheck</Name>
+    <Description>Description of My XCOM 2 Mod.</Description>
+    <SteamPublishID>0</SteamPublishID>
+    <AssemblyName>NoStrongerPCSCheck</AssemblyName>
+    <RootNamespace>NoStrongerPCSCheck</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Config\" />
+    <Folder Include="Localization\" />
+    <Folder Include="Src\" />
+    <Folder Include="Src\NoStrongerPCSCheck\" />
+    <Folder Include="Src\NoStrongerPCSCheck\Classes\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReadMe.txt" />
+    <Content Include="ModPreview.jpg" />
+    <Content Include="Config\XComEditor.ini" />
+    <Content Include="Config\XComEngine.ini" />
+    <Content Include="Config\XComGame.ini" />
+    <Content Include="Localization\XComGame.int" />
+    <Content Include="Src\NoStrongerPCSCheck\Classes\X2DownloadableContentInfo_NoStrongerPCSCheck.uc" />
+    <Content Include="Src\NoStrongerPCSCheck\Classes\X2EventListener_NoStrongerPCSCheck.uc">
+      <SubType>Content</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildLocalExtensionPath)\XCOM2.targets" />
+</Project>
