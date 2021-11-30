@@ -45,19 +45,8 @@ static function EventListenerReturn OverrideCanEquipImplant(Object EventData, Ob
 	Unit = XComGameState_Unit(EventSource);
 	CanEquipImplant = OverrideTuple.Data[0].b;
 
-	// This retains the original behaviour of Psi stat check
-	if (class'UIUtilities_Strategy'.static.GetStatBoost(Implant).StatType == eStat_PsiOffense && !Unit.IsPsiOperative())
-		return ELR_NoInterrupt;
-
-	// Even when the new PCS is weaker than the equipped one, we allow it to be equipped
-	EquippedImplants = Unit.GetAllItemsInSlot(eInvSlot_CombatSim);	
-	ImplantToRemove = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(EquippedImplants[0].ObjectID));
-
-	if(class'UIUtilities_Strategy'.static.GetStatBoost(Implant).StatType == 
-		class'UIUtilities_Strategy'.static.GetStatBoost(ImplantToRemove).StatType  && 
-		class'UIUtilities_Strategy'.static.GetStatBoost(Implant).Boost <= 
-		class'UIUtilities_Strategy'.static.GetStatBoost(ImplantToRemove).Boost)
-		CanEquipImplant = true;
+	// Set to true and override everything from base game
+	CanEquipImplant = true;
 
 	// Check if the unit soldier class is allowed to equip the PCS based on prefix
 	for (i = 0; i < default.DisallowedClasses.Length; i++)
