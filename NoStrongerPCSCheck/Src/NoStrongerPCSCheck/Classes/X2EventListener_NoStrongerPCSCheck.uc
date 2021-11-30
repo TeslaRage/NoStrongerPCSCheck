@@ -30,25 +30,25 @@ static function EventListenerReturn OverrideCanEquipImplant(Object EventData, Ob
 	local XComGameState_Unit Unit;
 	local bool CanEquipImplant;
 
-    // Grab everything we need from event
+	// Grab everything we need from event
 	OverrideTuple = XComLWTuple(EventData);
 	Implant = XComGameState_Item(OverrideTuple.Data[1].o);
 	Unit = XComGameState_Unit(EventSource);
 	CanEquipImplant = OverrideTuple.Data[0].b;
 
-    // If the unit can already equip, we bail
+	// If the unit can already equip, we bail
 	if (CanEquipImplant) return ELR_NoInterrupt;
 
-    // This retains the original behaviour of Psi stat check
+	// This retains the original behaviour of Psi stat check
 	if (class'UIUtilities_Strategy'.static.GetStatBoost(Implant).StatType == eStat_PsiOffense && !Unit.IsPsiOperative())
 		return ELR_NoInterrupt;
 
-    // If unit does not have any equipped implant, we bail
+	// If unit does not have any equipped implant, we bail
 	EquippedImplants = Unit.GetAllItemsInSlot(eInvSlot_CombatSim);
 
 	if (EquippedImplants.Length <= 0) return ELR_NoInterrupt;
 	
-    // Even when the new PCS is weaker than the equipped one, we allow it to be equipped
+	// Even when the new PCS is weaker than the equipped one, we allow it to be equipped
 	ImplantToRemove = XComGameState_Item(`XCOMHISTORY.GetGameStateForObjectID(EquippedImplants[0].ObjectID));
 
 	if(class'UIUtilities_Strategy'.static.GetStatBoost(Implant).StatType == 
@@ -58,6 +58,6 @@ static function EventListenerReturn OverrideCanEquipImplant(Object EventData, Ob
 		CanEquipImplant = true;
 
 	OverrideTuple.Data[0].b = CanEquipImplant;
-    
+	
 	return ELR_NoInterrupt;
 }
